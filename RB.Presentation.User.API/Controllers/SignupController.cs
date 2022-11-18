@@ -17,14 +17,12 @@ namespace RB.Presentation.User.API.Controllers
     public class SignupController : ControllerBase
     {
         private readonly ISignupFunctions _signUpContext;
-        private readonly ISignupValidations _signupValidations;
-        private IConfiguration _config;
+        public static IWebHostEnvironment _environment;
 
-        public SignupController(ISignupFunctions signUpContext, IConfiguration config, ISignupValidations signupValidations)
+        public SignupController(ISignupFunctions signUpContext, IWebHostEnvironment environment)
         {
             _signUpContext = signUpContext;
-            _config = config;
-            _signupValidations = signupValidations;
+            _environment = environment;
         }
 
         public static Signup signup = new Signup();

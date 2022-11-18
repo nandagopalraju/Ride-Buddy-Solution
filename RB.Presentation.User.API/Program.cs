@@ -30,6 +30,7 @@ builder.Services.AddDbContext<UserDbContext>(options =>
      options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddScoped<ISignupValidations, SignupImplementation>();
 builder.Services.AddScoped<ISignupFunctions, SignupFunctions>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 var app = builder.Build();
 

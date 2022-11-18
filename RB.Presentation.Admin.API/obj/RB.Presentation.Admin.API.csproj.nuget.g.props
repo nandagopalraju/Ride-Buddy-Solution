@@ -19,5 +19,6 @@
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgMicrosoft_Extensions_ApiDescription_Server Condition=" '$(PkgMicrosoft_Extensions_ApiDescription_Server)' == '' ">C:\Users\nraju\.nuget\packages\microsoft.extensions.apidescription.server\3.0.0</PkgMicrosoft_Extensions_ApiDescription_Server>
+    <PkgEASendMail Condition=" '$(PkgEASendMail)' == '' ">C:\Users\nraju\.nuget\packages\easendmail\7.9.0.9</PkgEASendMail>
   </PropertyGroup>
 </Project>

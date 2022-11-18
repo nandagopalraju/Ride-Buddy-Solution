@@ -18,5 +18,6 @@
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\nraju\.nuget\packages\microsoft.entityframeworkcore.tools\6.0.10</PkgMicrosoft_EntityFrameworkCore_Tools>
+    <PkgEASendMail Condition=" '$(PkgEASendMail)' == '' ">C:\Users\nraju\.nuget\packages\easendmail\7.9.0.9</PkgEASendMail>
   </PropertyGroup>
 </Project>

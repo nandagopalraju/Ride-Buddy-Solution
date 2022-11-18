@@ -17,7 +17,7 @@ namespace RB.Core.Application.DTO
         public string Gender { get; set; } = string.Empty;
         public string Department { get; set; } = string.Empty;
         public string EmployeeId { get; set; } = string.Empty;
-        //public IFormFile? License { get; set; }
+        public IFormFile? License { get; set; }
         public string? LicenseImage { get; set; }
 
 

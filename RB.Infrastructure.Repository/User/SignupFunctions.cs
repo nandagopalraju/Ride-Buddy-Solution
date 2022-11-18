@@ -14,7 +14,6 @@ namespace RB.Infrastructure.Repository.User
     {
         private readonly UserDbContext _userDbContext;
         private readonly ISignupValidations _signupValidations;
-
         public SignupFunctions(UserDbContext userDbContext, ISignupValidations signupValidations)
         {
             _userDbContext = userDbContext;

@@ -164,6 +164,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "EASendMail": {
+              "target": "Package",
+              "version": "[7.9.0.9, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -244,6 +248,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "EASendMail": {
+              "target": "Package",
+              "version": "[7.9.0.9, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.4.2, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
