@@ -31,6 +31,7 @@ builder.Services.AddDbContext<UserDbContext>(options =>
 builder.Services.AddScoped<ISignupValidations, SignupImplementation>();
 builder.Services.AddScoped<ISignupFunctions, SignupFunctions>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 
 var app = builder.Build();
 
