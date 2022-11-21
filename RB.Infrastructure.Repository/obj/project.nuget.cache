@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "BcrO9ih8oAoDt8KM7eHLp0keAnLKBRgxNWZ8/SGW5jevCEbgWcTsnGYhFFMPb8N2r/8uc8IoT46KR6Bph+9ipA==",
+  "dgSpecHash": "73s508oP41N6HoGWC3nuh9UmDOyJ+egdUlj3tAzQHH0U+4H/4XLIQGv7J1kCxGva362oKqePm+xYsVIsfl8MbA==",
   "success": true,
   "projectFilePath": "D:\\3.New Projects\\RideBuddySolution\\RB.Infrastructure.Repository\\RB.Infrastructure.Repository.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nraju\\.nuget\\packages\\easendmail\\7.9.0.9\\easendmail.7.9.0.9.nupkg.sha512",
     "C:\\Users\\nraju\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\nraju\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\nraju\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\nraju\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\nraju\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
@@ -51,6 +52,7 @@
     "C:\\Users\\nraju\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
     "C:\\Users\\nraju\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\nraju\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
+    "C:\\Users\\nraju\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
     "C:\\Users\\nraju\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
   "logs": []

@@ -16,7 +16,7 @@ namespace RB.Infrastructure.Repository
 
         }
         public DbSet<Signup> Users { get; set; }
-
+        public DbSet<Vehicle> Vehicles { get; set; }
        
     }
 }

@@ -33,6 +33,7 @@ namespace RB.Infrastructure.Repository.User
                 Number = signupDTO.Number,
                 Department = signupDTO.Department,
                 EmployeeId = signupDTO.EmployeeId,
+                Role = signupDTO.Role,
             };
             _userDbContext.Users.Add(user);
             _userDbContext.SaveChanges();

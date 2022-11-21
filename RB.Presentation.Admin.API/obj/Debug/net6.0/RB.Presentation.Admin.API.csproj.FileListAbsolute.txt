@@ -64,3 +64,6 @@ D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\obj\Debug\net6.0\r
 D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\obj\Debug\net6.0\RB.Presentation.Admin.API.pdb
 D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\obj\Debug\net6.0\RB.Presentation.Admin.API.genruntimeconfig.cache
 D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\obj\Debug\net6.0\ref\RB.Presentation.Admin.API.dll
+D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\bin\Debug\net6.0\EASendMail.dll
+D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll

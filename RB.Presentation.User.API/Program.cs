@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RB.Core.Application.Interface;
 using RB.Infrastructure.Repository;
@@ -6,6 +8,7 @@ using RB.Infrastructure.Repository.Services.User;
 using RB.Infrastructure.Repository.Services.User.Interface;
 using RB.Infrastructure.Repository.User;
 using Swashbuckle.AspNetCore.Filters;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,13 +29,27 @@ builder.Services.AddSwaggerGen(options =>
 
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
-builder.Services.AddDbContext<UserDbContext>(options =>
-     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+                .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
+builder.Services.AddMvc();
+
+builder.Services.AddDbContext<UserDbContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddScoped<ISignupValidations, SignupImplementation>();
 builder.Services.AddScoped<ISignupFunctions, SignupFunctions>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
-
+builder.Services.AddScoped<IVehicleRegistration, VehicleRegistration>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -43,6 +60,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

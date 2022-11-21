@@ -76,3 +76,4 @@ D:\3.New Projects\RideBuddySolution\RB.Presentation.User.API\bin\Debug\net6.0\Bo
 D:\3.New Projects\RideBuddySolution\RB.Presentation.User.API\bin\Debug\net6.0\EASendMail.dll
 D:\3.New Projects\RideBuddySolution\RB.Presentation.User.API\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
 D:\3.New Projects\RideBuddySolution\RB.Presentation.User.API\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\3.New Projects\RideBuddySolution\RB.Presentation.User.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

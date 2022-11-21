@@ -38,8 +38,9 @@ namespace RB.Infrastructure.Repository.Services.User
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Name),
-                new Claim(ClaimTypes.Role, "User"),
+                new Claim(ClaimTypes.Role, user.Role),
                 new Claim(ClaimTypes.Email, user.Email),
+                new Claim("Id", user.Id.ToString())
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(

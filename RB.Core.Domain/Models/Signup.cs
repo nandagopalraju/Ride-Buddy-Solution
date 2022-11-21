@@ -22,5 +22,6 @@ namespace RB.Core.Domain.Models
 
         //public IFormFile? LicenseImage { get; set; } 
         public string? LicenceImageName { get; set; }
+        public string Role { get; set; } = string.Empty;
     }
 }
