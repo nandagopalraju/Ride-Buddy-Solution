@@ -20,7 +20,7 @@ namespace RB.Presentation.User.API.Controllers
 
         [HttpPost]
         [Route("RegisterVehicle")]
-        [Authorize(Roles ="User")]
+        [Authorize(Roles = "User")]
         public IActionResult RegisterVehicle([FromBody]VehicleDTO vehicleDTO)
         {
             var currentUser = GetCurrentUser();
