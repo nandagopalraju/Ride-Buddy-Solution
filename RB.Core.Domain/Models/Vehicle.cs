@@ -13,13 +13,17 @@ namespace RB.Core.Domain.Models
         [Key]
         public int VehicleId { get; set; } = 0;
 
-        [ForeignKey("Signup")]
-        public int MemberId { get; set; }
-        public Signup Signup { get; set; }
+
+        
         
         public string VehicleName { get; set; } = string.Empty;
         public string VehicleType { get; set; } = string.Empty;
         public string VehicleNumber { get; set; } = string.Empty;
+
+        //relationships
+        public List<HostedRides> HostedRides { get; set; }
+
+        
 
     }
 }

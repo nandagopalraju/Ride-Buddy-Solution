@@ -12,6 +12,7 @@ namespace RB.Infrastructure.Repository.User
 {
     public class EmailService : IEmailService
     {
+        
         private readonly IConfiguration _config;
         public EmailService(IConfiguration config)
         {

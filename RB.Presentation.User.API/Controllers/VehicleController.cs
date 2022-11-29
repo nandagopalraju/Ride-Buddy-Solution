@@ -24,7 +24,7 @@ namespace RB.Presentation.User.API.Controllers
         public IActionResult RegisterVehicle([FromBody]VehicleDTO vehicleDTO)
         {
             var currentUser = GetCurrentUser();
-            _vehicleRegistration.RegisterVehicle(vehicleDTO, currentUser.tempId);
+            _vehicleRegistration.RegisterVehicle(vehicleDTO);
 
 
             return Ok();

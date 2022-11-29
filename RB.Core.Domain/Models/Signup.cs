@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,8 @@ namespace RB.Core.Domain.Models
 {
     public class Signup
     {
-        public int Id { get; set; } = 0;
+        [Key]
+        public int MemberId { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; }= string.Empty;
         public byte[] PasswordHash { get; set; }
@@ -23,5 +25,12 @@ namespace RB.Core.Domain.Models
         //public IFormFile? LicenseImage { get; set; } 
         public string? LicenceImageName { get; set; }
         public string Role { get; set; } = string.Empty;
+
+        //Relationships
+        
+        public List<HostedRides> HostedRides { get; set; } 
+        public List<Vehicle> Vehicles { get; set; }
+
+
     }
 }

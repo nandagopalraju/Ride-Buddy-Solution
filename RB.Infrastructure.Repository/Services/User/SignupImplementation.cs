@@ -33,6 +33,14 @@ namespace RB.Infrastructure.Repository.Services.User
             }
         }
 
+        //public void DecodePassword(byte[] passwordHash, byte[] passwordSalt)
+        //{
+        //    using ( var hmac = new HMACSHA512(passwordSalt))
+        //    {
+        //        var password = hmac.
+        //    }
+        //}
+
         public string CreateToken(Signup user)
         {
             List<Claim> claims = new List<Claim>
@@ -40,7 +48,7 @@ namespace RB.Infrastructure.Repository.Services.User
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Role, user.Role),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim("Id", user.Id.ToString())
+                new Claim("Id", user.MemberId.ToString())
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(

@@ -15,12 +15,11 @@ namespace RB.Core.Domain.Models
         public DateTime StartDate { get; set; }
         public DateTime StartTime { get; set; }
 
-        [ForeignKey("Signup")]
         public int MemberId { get; set; }
         public Signup Signup { get; set; }
 
-        [ForeignKey("Vehicle")]
         public int VehicleId { get; set; }
         public Vehicle Vehicle { get; set; }
+
     }
 }

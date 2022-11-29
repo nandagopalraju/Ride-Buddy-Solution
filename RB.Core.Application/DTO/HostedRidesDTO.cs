@@ -16,12 +16,12 @@ namespace RB.Core.Application.DTO
         public DateTime StartDate { get; set; }
         public DateTime StartTime { get; set; }
 
-        [ForeignKey("Signup")]
-        public int MemberId { get; set; }
-        public Signup Signup { get; set; }
 
-        [ForeignKey("Vehicle")]
-        public int VehicleId { get; set; }
-        public Vehicle Vehicle { get; set; }
+        public string MemberId { get; set; }
+        public ICollection< Signup> Signup { get; set; }
+
+
+        public string VehicleId { get; set; }=string.Empty;
+        public ICollection< Vehicle> Vehicle { get; set; }
     }
 }

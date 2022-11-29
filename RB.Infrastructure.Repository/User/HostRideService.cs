@@ -9,28 +9,35 @@ using System.Threading.Tasks;
 
 namespace RB.Infrastructure.Repository.User
 {
-    public class HostRideService : IHostRideService
+    public class HostRideService : GenericRepositoryOperations<HostedRidesDTO>,IHostRideService
     {
         
         private UserDbContext _userDbContext;
-        public HostRideService(UserDbContext userDbContext)
+        private IGenericRepositoryOperation<HostedRidesDTO> _genericRepositoryOperation;
+        public HostRideService(UserDbContext userDbContext, IGenericRepositoryOperation<HostedRidesDTO> genericRepositoryOperation):base (userDbContext)
         {
             _userDbContext = userDbContext;
+            _genericRepositoryOperation = genericRepositoryOperation;
         }
+
 
         public void HostRide(HostedRidesDTO hostedRidesDTO)
         {
-            var hosted = new HostedRides()
-            {
-                StartLocation = hostedRidesDTO.StartLocation,
-                EndLocation = hostedRidesDTO.EndLocation,
-                StartDate = hostedRidesDTO.StartDate,
-                StartTime = hostedRidesDTO.StartTime,
 
-            };
-            _userDbContext.Add(hosted);
-            _userDbContext.SaveChanges();
-            throw new NotImplementedException();
+            _genericRepositoryOperation.Add(hostedRidesDTO);
+            _genericRepositoryOperation.Save();
+            //var hosted = new HostedRides()
+            //{
+            //    StartLocation = hostedRidesDTO.StartLocation,
+            //    EndLocation = hostedRidesDTO.EndLocation,
+            //    StartDate = hostedRidesDTO.StartDate,
+            //    StartTime = hostedRidesDTO.StartTime,
+            //    MemberId = hostedRidesDTO.MemberId
+
+            //};
+            //_userDbContext.Add(hosted);
+            //_userDbContext.SaveChanges();
+            //throw new NotImplementedException();
         }
     }
 }

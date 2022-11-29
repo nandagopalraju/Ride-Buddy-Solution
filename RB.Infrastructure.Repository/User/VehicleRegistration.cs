@@ -9,25 +9,40 @@ using System.Threading.Tasks;
 
 namespace RB.Infrastructure.Repository.User
 {
-    public class VehicleRegistration : IVehicleRegistration
+    public class VehicleRegistration : GenericRepositoryOperations<Vehicle>, IVehicleRegistration
     {
         private readonly UserDbContext _userDbContext;
-        public VehicleRegistration(UserDbContext userDbContext)
+        private IGenericRepositoryOperation<Vehicle> _genericRepositoryOperation;
+        public VehicleRegistration(UserDbContext userDbContext, IGenericRepositoryOperation<Vehicle> genericRepositoryOperation) : base(userDbContext)
         {
             _userDbContext = userDbContext;
+            _genericRepositoryOperation = genericRepositoryOperation;
+           
         }
 
-        public void RegisterVehicle(VehicleDTO vehicleDTO, int memberId)
+        public void RegisterVehicle(VehicleDTO vehicleDTO)
         {
-            var vehicle = new Vehicle()
+            Vehicle vehicle = new Vehicle()
             {
-                MemberId = memberId,
+                VehicleId = vehicleDTO.VehicleId,
                 VehicleName = vehicleDTO.VehicleName,
                 VehicleType = vehicleDTO.VehicleType,
                 VehicleNumber = vehicleDTO.VehicleNumber,
             };
-            _userDbContext.Add(vehicle);
-            _userDbContext.SaveChanges();
+            _genericRepositoryOperation.Add(vehicle);
+            _genericRepositoryOperation.Save();
+
+
+
+            //var vehicle = new Vehicle()
+            //{
+            //    MemberId = vehicleDTO.MemberId,                
+            //    VehicleName = vehicleDTO.VehicleName,
+            //    VehicleType = vehicleDTO.VehicleType,
+            //    VehicleNumber = vehicleDTO.VehicleNumber,
+            //};
+            //_userDbContext.Add(vehicle);
+            //_userDbContext.SaveChanges();
         }
     }
 }

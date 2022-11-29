@@ -50,6 +50,8 @@ builder.Services.AddScoped<ISignupFunctions, SignupFunctions>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IVehicleRegistration, VehicleRegistration>();
+builder.Services.AddScoped<IHostRideService, HostRideService>();
+builder.Services.AddScoped(typeof(IGenericRepositoryOperation<>), typeof(GenericRepositoryOperations<>));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
