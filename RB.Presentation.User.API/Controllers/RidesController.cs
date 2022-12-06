@@ -17,17 +17,25 @@ namespace RB.Presentation.User.API.Controllers
         {
             _hostRideService = hostRideService;
         }
-        [HttpPost]
-        [Route("RegisterVehicle")]
-        [Authorize(Roles = "User")]
-        public IActionResult HostRide(HostedRidesDTO hostedRidesDTO)
-        {
-            //var currentUser = GetCurrentUser();
-            _hostRideService.HostRide(hostedRidesDTO);
+        //[HttpPost]
+        //[Route("RegisterVehicle")]
+        //[Authorize(Roles = "User")]
+        //public IActionResult HostRide(HostedRidesDTO hostedRidesDTO)
+        //{
+        //    //var currentUser = GetCurrentUser();
+        //    _hostRideService.HostRide(hostedRidesDTO);
 
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
+
+
+
+        /*----------------------------------------------------------->*/
+
+
+
+
         //private TempUserDTO GetCurrentUser()
         //{
         //    var temp = new TempUserDTO();

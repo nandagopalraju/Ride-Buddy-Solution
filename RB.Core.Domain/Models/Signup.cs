@@ -11,6 +11,12 @@ namespace RB.Core.Domain.Models
 {
     public class Signup
     {
+        //public Signup()
+        //{
+        //   // HashSet<Signup> signups = new HashSet<Signup>();
+        //  HashSet<Vehicle> vehicles = new HashSet<Vehicle>();
+
+        //}
         [Key]
         public int MemberId { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
@@ -28,8 +34,8 @@ namespace RB.Core.Domain.Models
 
         //Relationships
         
-        public List<HostedRides> HostedRides { get; set; } 
-        public List<Vehicle> Vehicles { get; set; }
+       // public List<HostedRides> HostedRides { get; set; } 
+        public ICollection<Vehicle> Vehicles { get; set; }
 
 
     }

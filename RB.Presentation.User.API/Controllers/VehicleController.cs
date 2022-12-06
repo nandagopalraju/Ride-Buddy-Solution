@@ -13,6 +13,7 @@ namespace RB.Presentation.User.API.Controllers
     public class VehicleController : ControllerBase
     {
         private readonly IVehicleRegistration _vehicleRegistration;
+        
         public VehicleController(IVehicleRegistration vehicleRegistration)
         {
             _vehicleRegistration = vehicleRegistration;
@@ -24,11 +25,12 @@ namespace RB.Presentation.User.API.Controllers
         public IActionResult RegisterVehicle([FromBody]VehicleDTO vehicleDTO)
         {
             var currentUser = GetCurrentUser();
-            _vehicleRegistration.RegisterVehicle(vehicleDTO);
+            _vehicleRegistration.RegisterVehicle(vehicleDTO, currentUser.tempId);
 
 
-            return Ok();
+            return Ok(vehicleDTO);
         }
+
         private TempUserDTO GetCurrentUser()
         {
             var temp = new TempUserDTO();

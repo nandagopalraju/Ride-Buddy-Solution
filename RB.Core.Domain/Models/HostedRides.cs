@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RB.Core.Domain.Models
 {
-    public class HostedRides
+  /*  public class HostedRides
     {
         public int Id { get; set; } = 0;
         public string StartLocation { get; set; } = string.Empty;
@@ -21,5 +21,5 @@ namespace RB.Core.Domain.Models
         public int VehicleId { get; set; }
         public Vehicle Vehicle { get; set; }
 
-    }
+    }*/
 }

@@ -9,6 +9,7 @@ namespace RB.Core.Application.Interface
 {
     public interface IVehicleRegistration
     {
-        void RegisterVehicle(VehicleDTO vehicleDTO);
+        void RegisterVehicle(VehicleDTO vehicleDTO,int id);
+       // List<VehicleDTO> GetAllVehicles();
     }
 }

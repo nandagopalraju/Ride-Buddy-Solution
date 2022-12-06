@@ -22,46 +22,6 @@ namespace RB.Infrastructure.Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("RB.Core.Domain.Models.HostedRides", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("EndLocation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SignupMemberId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("StartLocation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("VehicleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SignupMemberId");
-
-                    b.HasIndex("VehicleId");
-
-                    b.ToTable("HostedRides");
-                });
-
             modelBuilder.Entity("RB.Core.Domain.Models.Signup", b =>
                 {
                     b.Property<int>("MemberId")
@@ -121,7 +81,10 @@ namespace RB.Infrastructure.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VehicleId"), 1L, 1);
 
-                    b.Property<int?>("SignupMemberId")
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SignupMemberId")
                         .HasColumnType("int");
 
                     b.Property<string>("VehicleName")
@@ -143,42 +106,20 @@ namespace RB.Infrastructure.Repository.Migrations
                     b.ToTable("Vehicles");
                 });
 
-            modelBuilder.Entity("RB.Core.Domain.Models.HostedRides", b =>
+            modelBuilder.Entity("RB.Core.Domain.Models.Vehicle", b =>
                 {
                     b.HasOne("RB.Core.Domain.Models.Signup", "Signup")
-                        .WithMany("HostedRides")
+                        .WithMany("Vehicles")
                         .HasForeignKey("SignupMemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RB.Core.Domain.Models.Vehicle", "Vehicle")
-                        .WithMany("HostedRides")
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Signup");
-
-                    b.Navigation("Vehicle");
-                });
-
-            modelBuilder.Entity("RB.Core.Domain.Models.Vehicle", b =>
-                {
-                    b.HasOne("RB.Core.Domain.Models.Signup", null)
-                        .WithMany("Vehicles")
-                        .HasForeignKey("SignupMemberId");
                 });
 
             modelBuilder.Entity("RB.Core.Domain.Models.Signup", b =>
                 {
-                    b.Navigation("HostedRides");
-
                     b.Navigation("Vehicles");
-                });
-
-            modelBuilder.Entity("RB.Core.Domain.Models.Vehicle", b =>
-                {
-                    b.Navigation("HostedRides");
                 });
 #pragma warning restore 612, 618
         }

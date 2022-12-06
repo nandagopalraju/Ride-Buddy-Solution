@@ -11,8 +11,8 @@ namespace RB.Core.Application.DTO
 {
     public class VehicleDTO
     {
-        public int VehicleId { get; set; } = 0;
-        public int MemberId { get; set; }
+        //public int VehicleId { get; set; } = 0;
+        //public int MemberId { get; set; }
 
         public string VehicleName { get; set; } = string.Empty;
         public string VehicleType { get; set; } = string.Empty;

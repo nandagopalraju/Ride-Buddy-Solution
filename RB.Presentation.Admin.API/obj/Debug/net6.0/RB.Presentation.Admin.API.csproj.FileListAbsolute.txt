@@ -48,7 +48,6 @@ D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\obj\Debug\net6.0\R
 D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\obj\Debug\net6.0\RB.Presentation.Admin.API.AssemblyInfoInputs.cache
 D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\obj\Debug\net6.0\RB.Presentation.Admin.API.AssemblyInfo.cs
 D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\obj\Debug\net6.0\RB.Presentation.Admin.API.csproj.CoreCompileInputs.cache
-D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\obj\Debug\net6.0\RB.Presentation.Admin.API.MvcApplicationPartsAssemblyInfo.cs
 D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\obj\Debug\net6.0\RB.Presentation.Admin.API.MvcApplicationPartsAssemblyInfo.cache
 D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\obj\Debug\net6.0\staticwebassets.build.json
 D:\3.New Projects\RideBuddySolution\RB.Presentation.Admin.API\obj\Debug\net6.0\staticwebassets.development.json

@@ -9,6 +9,6 @@ namespace RB.Core.Application.Interface
 {
     public interface IHostRideService
     {
-        void HostRide(HostedRidesDTO hostedRidesDTO);
+        //void HostRide(HostedRidesDTO hostedRidesDTO);
     }
 }

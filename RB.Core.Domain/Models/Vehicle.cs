@@ -21,7 +21,11 @@ namespace RB.Core.Domain.Models
         public string VehicleNumber { get; set; } = string.Empty;
 
         //relationships
-        public List<HostedRides> HostedRides { get; set; }
+       // public List<HostedRides> HostedRides { get; set; }
+        
+
+        public int MemberId { get; set; }
+        public Signup Signup { get; set; }
 
         
 

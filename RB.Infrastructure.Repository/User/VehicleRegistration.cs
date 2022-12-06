@@ -9,28 +9,46 @@ using System.Threading.Tasks;
 
 namespace RB.Infrastructure.Repository.User
 {
-    public class VehicleRegistration : GenericRepositoryOperations<Vehicle>, IVehicleRegistration
+    public class VehicleRegistration : IVehicleRegistration
     {
         private readonly UserDbContext _userDbContext;
-        private IGenericRepositoryOperation<Vehicle> _genericRepositoryOperation;
-        public VehicleRegistration(UserDbContext userDbContext, IGenericRepositoryOperation<Vehicle> genericRepositoryOperation) : base(userDbContext)
+        //private IGenericRepositoryOperation<Vehicle> _genericRepositoryOperation;
+        public VehicleRegistration(UserDbContext userDbContext/*, IGenericRepositoryOperation<Vehicle> genericRepositoryOperation) : base(userDbContext*/)
         {
             _userDbContext = userDbContext;
-            _genericRepositoryOperation = genericRepositoryOperation;
-           
+           // _genericRepositoryOperation = genericRepositoryOperation;
+             
         }
 
-        public void RegisterVehicle(VehicleDTO vehicleDTO)
+        //public List<VehicleDTO> GetAllVehicles()
+        //{
+        //    return _userDbContext.Vehicles.Where(i=>true).ToList();
+        //}
+
+        public void RegisterVehicle(VehicleDTO vehicleDTO, int id)
         {
+
+            Signup user= new Signup();
+            user.MemberId = id;
+
+            var user1 = _userDbContext.Users.Where(x => x.MemberId == id).ToList();
+
+
             Vehicle vehicle = new Vehicle()
             {
-                VehicleId = vehicleDTO.VehicleId,
+                //VehicleId = vehicleDTO.VehicleId,
                 VehicleName = vehicleDTO.VehicleName,
                 VehicleType = vehicleDTO.VehicleType,
                 VehicleNumber = vehicleDTO.VehicleNumber,
+                
+                MemberId = user1[0].MemberId,
+                
             };
-            _genericRepositoryOperation.Add(vehicle);
-            _genericRepositoryOperation.Save();
+            //_genericRepositoryOperation.Add(vehicle);
+            //_genericRepositoryOperation.Save();
+
+            _userDbContext.Add(vehicle);
+            _userDbContext.SaveChangesAsync();
 
 
 
@@ -44,5 +62,6 @@ namespace RB.Infrastructure.Repository.User
             //_userDbContext.Add(vehicle);
             //_userDbContext.SaveChanges();
         }
+
     }
 }
