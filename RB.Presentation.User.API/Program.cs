@@ -51,6 +51,7 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IVehicleRegistration, VehicleRegistration>();
 builder.Services.AddScoped<IHostRideService, HostRideService>();
+builder.Services.AddScoped<IJoinRideService, JoinRideService>();
 builder.Services.AddScoped(typeof(IGenericRepositoryOperation<>), typeof(GenericRepositoryOperations<>));
 var app = builder.Build();
 

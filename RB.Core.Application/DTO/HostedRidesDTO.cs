@@ -10,7 +10,7 @@ namespace RB.Core.Application.DTO
 {
     public class HostedRidesDTO
     {
-        public int Id { get; set; } = 0;
+
         public string StartLocation { get; set; } = string.Empty;
         public string EndLocation { get; set; } = string.Empty;
         public DateTime StartDate { get; set; }

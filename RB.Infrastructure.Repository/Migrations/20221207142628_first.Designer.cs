@@ -12,7 +12,7 @@ using RB.Infrastructure.Repository;
 namespace RB.Infrastructure.Repository.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20221207113331_first")]
+    [Migration("20221207142628_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,75 @@ namespace RB.Infrastructure.Repository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("RB.Core.Domain.Models.HostedRides", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("EndLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SignupMemberId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("StartLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("VehicleVehicleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SignupMemberId");
+
+                    b.HasIndex("VehicleVehicleId");
+
+                    b.ToTable("HostedRides");
+                });
+
+            modelBuilder.Entity("RB.Core.Domain.Models.JoinRide", b =>
+                {
+                    b.Property<int>("RequestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RequestId"), 1L, 1);
+
+                    b.Property<string>("EndLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SignupMemberId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("StartLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("RequestId");
+
+                    b.HasIndex("SignupMemberId");
+
+                    b.ToTable("JoinRide");
+                });
 
             modelBuilder.Entity("RB.Core.Domain.Models.Signup", b =>
                 {
@@ -105,6 +174,36 @@ namespace RB.Infrastructure.Repository.Migrations
                     b.ToTable("Vehicles");
                 });
 
+            modelBuilder.Entity("RB.Core.Domain.Models.HostedRides", b =>
+                {
+                    b.HasOne("RB.Core.Domain.Models.Signup", "Signup")
+                        .WithMany("HostedRides")
+                        .HasForeignKey("SignupMemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RB.Core.Domain.Models.Vehicle", "Vehicle")
+                        .WithMany()
+                        .HasForeignKey("VehicleVehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Signup");
+
+                    b.Navigation("Vehicle");
+                });
+
+            modelBuilder.Entity("RB.Core.Domain.Models.JoinRide", b =>
+                {
+                    b.HasOne("RB.Core.Domain.Models.Signup", "Signup")
+                        .WithMany("JoinRides")
+                        .HasForeignKey("SignupMemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Signup");
+                });
+
             modelBuilder.Entity("RB.Core.Domain.Models.Vehicle", b =>
                 {
                     b.HasOne("RB.Core.Domain.Models.Signup", "Signup")
@@ -118,6 +217,10 @@ namespace RB.Infrastructure.Repository.Migrations
 
             modelBuilder.Entity("RB.Core.Domain.Models.Signup", b =>
                 {
+                    b.Navigation("HostedRides");
+
+                    b.Navigation("JoinRides");
+
                     b.Navigation("Vehicles");
                 });
 #pragma warning restore 612, 618

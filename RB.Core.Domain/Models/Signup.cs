@@ -34,8 +34,10 @@ namespace RB.Core.Domain.Models
 
         //Relationships
         
-       // public List<HostedRides> HostedRides { get; set; } 
+        public ICollection<HostedRides> HostedRides { get; set; } 
         public ICollection<Vehicle> Vehicles { get; set; }
+        public ICollection<JoinRide> JoinRides { get; set; }
+
 
 
     }
