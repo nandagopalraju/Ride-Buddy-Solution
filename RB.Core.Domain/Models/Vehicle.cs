@@ -24,7 +24,7 @@ namespace RB.Core.Domain.Models
        // public List<HostedRides> HostedRides { get; set; }
         
 
-        public int MemberId { get; set; }
+        public int SignupMemberId { get; set; }
         public Signup Signup { get; set; }
 
         

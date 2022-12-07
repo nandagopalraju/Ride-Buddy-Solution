@@ -32,6 +32,7 @@ namespace RB.Infrastructure.Repository.User
             user.MemberId = id;
 
             var user1 = _userDbContext.Users.Where(x => x.MemberId == id).ToList();
+           
 
 
             Vehicle vehicle = new Vehicle()
@@ -41,7 +42,7 @@ namespace RB.Infrastructure.Repository.User
                 VehicleType = vehicleDTO.VehicleType,
                 VehicleNumber = vehicleDTO.VehicleNumber,
                 
-                MemberId = user1[0].MemberId,
+                SignupMemberId = user1[0].MemberId,
                 
             };
             //_genericRepositoryOperation.Add(vehicle);

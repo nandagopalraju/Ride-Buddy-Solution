@@ -22,6 +22,43 @@ namespace RB.Infrastructure.Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("RB.Core.Domain.Models.HostedRides", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("EndLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SignupMemberId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("StartLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("VehicleVehicleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SignupMemberId");
+
+                    b.HasIndex("VehicleVehicleId");
+
+                    b.ToTable("HostedRides");
+                });
+
             modelBuilder.Entity("RB.Core.Domain.Models.Signup", b =>
                 {
                     b.Property<int>("MemberId")
@@ -81,9 +118,6 @@ namespace RB.Infrastructure.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VehicleId"), 1L, 1);
 
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SignupMemberId")
                         .HasColumnType("int");
 
@@ -104,6 +138,25 @@ namespace RB.Infrastructure.Repository.Migrations
                     b.HasIndex("SignupMemberId");
 
                     b.ToTable("Vehicles");
+                });
+
+            modelBuilder.Entity("RB.Core.Domain.Models.HostedRides", b =>
+                {
+                    b.HasOne("RB.Core.Domain.Models.Signup", "Signup")
+                        .WithMany()
+                        .HasForeignKey("SignupMemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RB.Core.Domain.Models.Vehicle", "Vehicle")
+                        .WithMany()
+                        .HasForeignKey("VehicleVehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Signup");
+
+                    b.Navigation("Vehicle");
                 });
 
             modelBuilder.Entity("RB.Core.Domain.Models.Vehicle", b =>

@@ -9,43 +9,41 @@ using System.Threading.Tasks;
 
 namespace RB.Infrastructure.Repository.User
 {
-    //public class HostRideService : GenericRepositoryOperations<HostedRidesDTO>,IHostRideService
-    //{
+    public class HostRideService :IHostRideService
+    {
+
+        private UserDbContext _userDbContext;
+
+        public HostRideService(UserDbContext userDbContext)
+        {
+            _userDbContext = userDbContext;
+        }
+
+
+        public void HostRide(HostedRidesDTO hostedRidesDTO, int id)
+        {
+            Signup user = new Signup();
+            user.MemberId = id;
+
+            var user1 = _userDbContext.Users.Where(x => x.MemberId == id).ToList();
+            var vehicles = _userDbContext.Vehicles.Where(x => x.VehicleId == hostedRidesDTO.VehicleId).ToList();
+
+   
+            var hosted = new HostedRides()
+            {
+                StartLocation = hostedRidesDTO.StartLocation,
+                EndLocation = hostedRidesDTO.EndLocation,
+                StartDate = hostedRidesDTO.StartDate,
+                StartTime = hostedRidesDTO.StartTime,
+                SignupMemberId = user1[0].MemberId,
+                //VehicleVehicleId = user2[0].VehicleId,
+                VehicleVehicleId = vehicles[0].VehicleId
+            };
+            _userDbContext.Add(hosted);
+            _userDbContext.SaveChangesAsync();
+
+        }
+            
+    }
         
-        //private UserDbContext _userDbContext;
-        //private IGenericRepositoryOperation<HostedRidesDTO> _genericRepositoryOperation;
-        //public HostRideService(UserDbContext userDbContext, IGenericRepositoryOperation<HostedRidesDTO> genericRepositoryOperation):base (userDbContext)
-        //{
-        //    _userDbContext = userDbContext;
-        //    _genericRepositoryOperation = genericRepositoryOperation;
-        //}
-
-
-        //public void HostRide(HostedRidesDTO hostedRidesDTO)
-        //{
-
-        //    _genericRepositoryOperation.Add(hostedRidesDTO);
-        //    _genericRepositoryOperation.Save();
-
-
-
-
-
-
-
-
-            //var hosted = new HostedRides()
-            //{
-            //    StartLocation = hostedRidesDTO.StartLocation,
-            //    EndLocation = hostedRidesDTO.EndLocation,
-            //    StartDate = hostedRidesDTO.StartDate,
-            //    StartTime = hostedRidesDTO.StartTime,
-            //    MemberId = hostedRidesDTO.MemberId
-
-            //};
-            //_userDbContext.Add(hosted);
-            //_userDbContext.SaveChanges();
-            //throw new NotImplementedException();
-    //    }
-    //}
 }
