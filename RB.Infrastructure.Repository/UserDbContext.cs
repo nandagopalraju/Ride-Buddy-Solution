@@ -18,5 +18,6 @@ namespace RB.Infrastructure.Repository
         public DbSet<Signup> Users { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<HostedRides> HostedRides{ get; set; }
+        public DbSet<JoinRide> JoinRide { get; set; }
     }
 }

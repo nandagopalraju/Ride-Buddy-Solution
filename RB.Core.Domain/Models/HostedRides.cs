@@ -21,5 +21,8 @@ namespace RB.Core.Domain.Models
         public int VehicleVehicleId { get; set; }
         public Vehicle Vehicle { get; set; }
 
+        public ICollection<JoinRide> JoinRides { get; set; }
+        public ICollection<JoinRequestQueue> joinRequestQueues { get; set; }
+
     }
 }

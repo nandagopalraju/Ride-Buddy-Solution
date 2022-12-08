@@ -24,6 +24,7 @@ namespace RB.Infrastructure.Repository.User
             user.MemberId = id;
 
             var user1 = _userDbContext.Users.Where(x => x.MemberId == id).ToList();
+            var hostedride = _userDbContext.HostedRides.Where(x =>x.Id==JoinRideDTO.HostId).ToList();
 
 
             var join = new JoinRide()
@@ -33,6 +34,8 @@ namespace RB.Infrastructure.Repository.User
                 StartDate = JoinRideDTO.StartDate,
                 StartTime = JoinRideDTO.StartTime,
                 SignupMemberId = user1[0].MemberId,
+                HostedRidesId= hostedride[0].Id,
+
             };
             _userDbContext.Add(join);
             _userDbContext.SaveChangesAsync();

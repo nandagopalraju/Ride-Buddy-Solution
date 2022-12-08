@@ -59,17 +59,46 @@ namespace RB.Infrastructure.Repository.Migrations
                     b.ToTable("HostedRides");
                 });
 
-            modelBuilder.Entity("RB.Core.Domain.Models.JoinRide", b =>
+            modelBuilder.Entity("RB.Core.Domain.Models.JoinRequestQueue", b =>
                 {
-                    b.Property<int>("RequestId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RequestId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("HostedRidesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("JoinRideId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HostedRidesId");
+
+                    b.HasIndex("JoinRideId");
+
+                    b.ToTable("JoinRequestQueue");
+                });
+
+            modelBuilder.Entity("RB.Core.Domain.Models.JoinRide", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("EndLocation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HostedRidesId")
+                        .HasColumnType("int");
 
                     b.Property<int>("SignupMemberId")
                         .HasColumnType("int");
@@ -84,7 +113,12 @@ namespace RB.Infrastructure.Repository.Migrations
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("RequestId");
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HostedRidesId");
 
                     b.HasIndex("SignupMemberId");
 
@@ -191,13 +225,40 @@ namespace RB.Infrastructure.Repository.Migrations
                     b.Navigation("Vehicle");
                 });
 
+            modelBuilder.Entity("RB.Core.Domain.Models.JoinRequestQueue", b =>
+                {
+                    b.HasOne("RB.Core.Domain.Models.HostedRides", "HostedRides")
+                        .WithMany("joinRequestQueues")
+                        .HasForeignKey("HostedRidesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RB.Core.Domain.Models.JoinRide", "JoinRide")
+                        .WithMany("joinRequestQueues")
+                        .HasForeignKey("JoinRideId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HostedRides");
+
+                    b.Navigation("JoinRide");
+                });
+
             modelBuilder.Entity("RB.Core.Domain.Models.JoinRide", b =>
                 {
+                    b.HasOne("RB.Core.Domain.Models.HostedRides", "HostedRides")
+                        .WithMany("JoinRides")
+                        .HasForeignKey("HostedRidesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("RB.Core.Domain.Models.Signup", "Signup")
                         .WithMany("JoinRides")
                         .HasForeignKey("SignupMemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("HostedRides");
 
                     b.Navigation("Signup");
                 });
@@ -211,6 +272,18 @@ namespace RB.Infrastructure.Repository.Migrations
                         .IsRequired();
 
                     b.Navigation("Signup");
+                });
+
+            modelBuilder.Entity("RB.Core.Domain.Models.HostedRides", b =>
+                {
+                    b.Navigation("JoinRides");
+
+                    b.Navigation("joinRequestQueues");
+                });
+
+            modelBuilder.Entity("RB.Core.Domain.Models.JoinRide", b =>
+                {
+                    b.Navigation("joinRequestQueues");
                 });
 
             modelBuilder.Entity("RB.Core.Domain.Models.Signup", b =>
