@@ -29,5 +29,6 @@ namespace RB.Presentation.User.API.Controllers
             }
             return Ok(result);
         }
+
     }
 }

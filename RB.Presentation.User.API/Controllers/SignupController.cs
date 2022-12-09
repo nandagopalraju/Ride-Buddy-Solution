@@ -37,6 +37,17 @@ namespace RB.Presentation.User.API.Controllers
             _signUpContext.SignUp(signupDTO);
             return Ok();
         }
+        [HttpGet]
+        public IActionResult UserDetails()
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest("not a valid request");
+            }
+            var data = _signUpContext.UserDetails();
+            return Ok(data);
+
+        }
 
     }
 }

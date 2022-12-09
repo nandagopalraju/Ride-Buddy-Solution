@@ -1,7 +1,9 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using RB.Core.Application.DTO.Helpers;
 using RB.Core.Application.Interface;
 using RB.Infrastructure.Repository;
 using RB.Infrastructure.Repository.Services.User;
@@ -17,6 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddAutoMapper(typeof(GeneralProfile).Assembly);
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -53,6 +56,7 @@ builder.Services.AddScoped<IVehicleRegistration, VehicleRegistration>();
 builder.Services.AddScoped<IHostRideService, HostRideService>();
 builder.Services.AddScoped<IJoinRideService, JoinRideService>();
 builder.Services.AddScoped<IHostAcceptService, HostAcceptService>();
+
 builder.Services.AddScoped(typeof(IGenericRepositoryOperation<>), typeof(GenericRepositoryOperations<>));
 var app = builder.Build();
 

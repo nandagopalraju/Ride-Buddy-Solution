@@ -11,5 +11,6 @@ namespace RB.Core.Application.Interface
     public interface ISignupFunctions
     {
         void SignUp( SignupDTO signup);
+        List<SignupDTO> UserDetails();
     }
 }

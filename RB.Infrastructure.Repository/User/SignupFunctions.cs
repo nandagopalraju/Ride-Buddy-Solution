@@ -1,4 +1,5 @@
-﻿using RB.Core.Application.DTO;
+﻿using AutoMapper;
+using RB.Core.Application.DTO;
 using RB.Core.Application.Interface;
 using RB.Core.Domain.Models;
 using RB.Infrastructure.Repository.Services.User.Interface;
@@ -14,10 +15,12 @@ namespace RB.Infrastructure.Repository.User
     {
         private readonly UserDbContext _userDbContext;
         private readonly ISignupValidations _signupValidations;
-        public SignupFunctions(UserDbContext userDbContext, ISignupValidations signupValidations)
+        private readonly IMapper _mapper;
+        public SignupFunctions(UserDbContext userDbContext, ISignupValidations signupValidations, IMapper mapper)
         {
             _userDbContext = userDbContext;
             _signupValidations = signupValidations;
+            _mapper = mapper;
         }
 
         public void SignUp(SignupDTO signupDTO)
@@ -37,6 +40,13 @@ namespace RB.Infrastructure.Repository.User
             };
             _userDbContext.Users.Add(user);
             _userDbContext.SaveChanges();
+        }
+        public List<SignupDTO> UserDetails()
+        {
+
+            var data = _mapper.Map<List<Signup>, List<SignupDTO>>(_userDbContext.Users.ToList());
+            return data;
+            
         }
     }
 }
