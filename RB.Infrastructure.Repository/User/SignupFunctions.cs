@@ -26,7 +26,7 @@ namespace RB.Infrastructure.Repository.User
         public void SignUp(SignupDTO signupDTO)
         {
             _signupValidations.CreatePasswordHash(signupDTO.Password, out byte[] passwordHash, out byte[] passwordSalt);
-            var user = new Signup
+            var user = new TempSignup
             {
                 Name = signupDTO.Name,
                 PasswordHash = passwordHash,
@@ -38,7 +38,7 @@ namespace RB.Infrastructure.Repository.User
                 EmployeeId = signupDTO.EmployeeId,
                 Role = signupDTO.Role,
             };
-            _userDbContext.Users.Add(user);
+            _userDbContext.TempUsers.Add(user);
             _userDbContext.SaveChanges();
         }
         public List<SignupDTO> UserDetails()

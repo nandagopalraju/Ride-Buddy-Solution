@@ -18,26 +18,48 @@ namespace RB.Presentation.User.API.Controllers
     {
         private readonly ISignupFunctions _signUpContext;
         public static IWebHostEnvironment _environment;
+        private readonly ISignupConfirmation _signupConfirmation;
 
-        public SignupController(ISignupFunctions signUpContext, IWebHostEnvironment environment)
+        public SignupController(ISignupFunctions signUpContext, IWebHostEnvironment environment, ISignupConfirmation signupConfirmation)
         {
             _signUpContext = signUpContext;
             _environment = environment;
+            _signupConfirmation = signupConfirmation;
         }
 
-        public static Signup signup = new Signup();
+        // public static Signup signup = new Signup();
 
         [HttpPost]
+        [Route("Signup")]
         public IActionResult SignUp(SignupDTO signupDTO)
         {
+            HttpContext.Session.SetString("email", signupDTO.Email);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest("not a valid request");
-            }
+            } 
             _signUpContext.SignUp(signupDTO);
             return Ok();
         }
+
+        [HttpPost]
+        [Route("Confirmmail")]
+        public IActionResult ConfirmMail(SignupConfirmationDTO confirmationDTO)
+        {
+            //var email = HttpContext.Session.GetString("email");
+            //if(email==confirmationDTO.Email)
+            {
+                _signupConfirmation.Register(confirmationDTO.Email);
+
+            }
+            return Ok();
+        }
+
+ 
+
         [HttpGet]
+        [Route("Userdetails")]
         public IActionResult UserDetails()
         {
             if(!ModelState.IsValid)

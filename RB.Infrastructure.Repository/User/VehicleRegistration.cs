@@ -28,8 +28,8 @@ namespace RB.Infrastructure.Repository.User
         public void RegisterVehicle(VehicleDTO vehicleDTO, int id)
         {
 
-            Signup user= new Signup();
-            user.MemberId = id;
+            //Signup user= new Signup();
+            //user.MemberId = id;
 
             var user1 = _userDbContext.Users.Where(x => x.MemberId == id).ToList();
            

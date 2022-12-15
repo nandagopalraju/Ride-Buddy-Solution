@@ -176,6 +176,60 @@ namespace RB.Infrastructure.Repository.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("RB.Core.Domain.Models.TempSignup", b =>
+                {
+                    b.Property<int>("MemberId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberId"), 1L, 1);
+
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LicenceImageName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Number")
+                        .HasColumnType("float");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("MemberId");
+
+                    b.ToTable("TempUsers");
+                });
+
             modelBuilder.Entity("RB.Core.Domain.Models.Vehicle", b =>
                 {
                     b.Property<int>("VehicleId")
@@ -234,7 +288,7 @@ namespace RB.Infrastructure.Repository.Migrations
                         .IsRequired();
 
                     b.HasOne("RB.Core.Domain.Models.JoinRide", "JoinRide")
-                        .WithMany("joinRequestQueues")
+                        .WithMany()
                         .HasForeignKey("JoinRideId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -278,11 +332,6 @@ namespace RB.Infrastructure.Repository.Migrations
                 {
                     b.Navigation("JoinRides");
 
-                    b.Navigation("joinRequestQueues");
-                });
-
-            modelBuilder.Entity("RB.Core.Domain.Models.JoinRide", b =>
-                {
                     b.Navigation("joinRequestQueues");
                 });
 

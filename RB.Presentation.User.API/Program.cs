@@ -20,6 +20,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAutoMapper(typeof(GeneralProfile).Assembly);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ReactJsDomain",
+        policy => policy.WithOrigins("http://localhost:3000")
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        );
+});
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -46,16 +54,22 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 builder.Services.AddMvc();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(60);
+});
 
 builder.Services.AddDbContext<UserDbContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddScoped<ISignupValidations, SignupImplementation>();
 builder.Services.AddScoped<ISignupFunctions, SignupFunctions>();
+builder.Services.AddScoped<ISignupConfirmation, SignupConfirmationService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IVehicleRegistration, VehicleRegistration>();
 builder.Services.AddScoped<IHostRideService, HostRideService>();
 builder.Services.AddScoped<IJoinRideService, JoinRideService>();
 builder.Services.AddScoped<IHostAcceptService, HostAcceptService>();
+
 
 builder.Services.AddScoped(typeof(IGenericRepositoryOperation<>), typeof(GenericRepositoryOperations<>));
 var app = builder.Build();
@@ -70,8 +84,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
-
+app.UseCors("ReactJsDomain");
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllers();
 
