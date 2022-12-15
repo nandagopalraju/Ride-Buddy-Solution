@@ -21,10 +21,10 @@ namespace RB.Presentation.User.API.Controllers
         public IActionResult HostARide([FromBody] HostedRidesDTO HostedRidesDTO)
         {
             var currentUser = GetCurrentUser();
-            _hostRideService.HostRide(HostedRidesDTO, currentUser.tempId);
+            var response =_hostRideService.HostRide(HostedRidesDTO, currentUser.tempId);
 
 
-            return Ok();
+            return Ok(response.Result);
         }
 
 

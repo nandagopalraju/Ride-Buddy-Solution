@@ -20,27 +20,43 @@ namespace RB.Infrastructure.Repository.User
         }
 
 
-        public void HostRide(HostedRidesDTO hostedRidesDTO, int id)
+        public async Task<UserResponseDTO> HostRide(HostedRidesDTO hostedRidesDTO, int id)
         {
             Signup user = new Signup();
             user.MemberId = id;
+         
+            UserResponseDTO response = new UserResponseDTO();
 
             var user1 = _userDbContext.Users.Where(x => x.MemberId == id).ToList();
             var vehicles = _userDbContext.Vehicles.Where(x => x.VehicleId == hostedRidesDTO.VehicleId).ToList();
-
-   
-            var hosted = new HostedRides()
+            if (vehicles.Count != 0)
             {
-                StartLocation = hostedRidesDTO.StartLocation,
-                EndLocation = hostedRidesDTO.EndLocation,
-                StartDate = hostedRidesDTO.StartDate,
-                StartTime = hostedRidesDTO.StartTime,
-                SignupMemberId = user1[0].MemberId,
-                //VehicleVehicleId = user2[0].VehicleId,
-                VehicleVehicleId = vehicles[0].VehicleId
-            };
-            _userDbContext.Add(hosted);
-            _userDbContext.SaveChangesAsync();
+                var hosted = new HostedRides()
+                {
+                    StartLocation = hostedRidesDTO.StartLocation,
+                    EndLocation = hostedRidesDTO.EndLocation,
+                    StartDate = hostedRidesDTO.StartDate,
+                    StartTime = hostedRidesDTO.StartTime,
+                    SignupMemberId = user1[0].MemberId,
+                    //VehicleVehicleId = user2[0].VehicleId,
+                    VehicleVehicleId = vehicles[0].VehicleId
+                };
+                _userDbContext.Add(hosted);
+                _userDbContext.SaveChangesAsync();
+
+                response.Message = "Ride hosted succesfully";
+                response.Status = true;
+                return response;
+            }
+            else
+            {
+                response.Message = "Ride host unsuccesfull";
+                response.Status = false;
+                return response;
+
+            }
+   
+            
 
         }
             
